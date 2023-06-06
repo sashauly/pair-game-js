@@ -1,0 +1,33 @@
+:root{
+  
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-width: 320px;
+
+  background-color: #f4c531;
+
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+}
+.container {
+  width: 100%;
+  max-width: 1630px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.game-title{
+  margin: 0;
+
+  text-align: center;
+}
