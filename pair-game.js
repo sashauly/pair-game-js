@@ -38,8 +38,6 @@ function createForm() {
   };
 }
 
-
-
 let movesCount = 0,
   winCount = 0;
 
@@ -58,7 +56,6 @@ const timeGenerator = () => {
   }, 1000);
 };
 
-//For calculating moves
 const movesCounter = () => {
   movesCount += 1;
   moves.innerHTML = `<span>Moves:</span>${movesCount}`;
@@ -66,7 +63,7 @@ const movesCounter = () => {
 
 // Этап 1. Создайте функцию, генерирующую массив парных чисел. Пример массива, который должна возвратить функция: [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8].count - количество пар.
 
-function createArray(count = 4) {
+function createArray(count) {
   const numbersArray = [];
   for (let i = 1; i <= (count * count) / 2; i++) {
     numbersArray.push(i);
@@ -96,46 +93,31 @@ function startGame(cardValues, size = 4) {
      </div>
      `;
   }
-  //Grid
   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 
-  //Cards
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {
-        //flip the cliked card
         card.classList.add("flipped");
-        //if it is the firstcard (!firstCard since firstCard is initially false)
         if (!firstCard) {
-          //so current card will become firstCard
           firstCard = card;
-          //current cards value becomes firstCardValue
           firstCardValue = card.getAttribute("data-card-value");
         } else {
-          //increment moves since user selected second card
           movesCounter();
-          //secondCard and value
           secondCard = card;
           let secondCardValue = card.getAttribute("data-card-value");
           if (firstCardValue == secondCardValue) {
-            //if both cards match add matched class so these cards would beignored next time
             firstCard.classList.add("matched");
             secondCard.classList.add("matched");
-            //set firstCard to false since next card would be first now
             firstCard = false;
-            //winCount increment as user found a correct match
             winCount += 1;
-            //check if winCount ==half of cardValues
             if (winCount == Math.floor(cardValues.length / 2)) {
               result.innerHTML = `<h2>You Won</h2>
             <h4>Moves: ${movesCount}</h4>`;
               stopGame();
             }
           } else {
-            //if the cards dont match
-            //flip the cards back to normal
             let [tempFirst, tempSecond] = [firstCard, secondCard];
             firstCard = false;
             secondCard = false;
@@ -183,6 +165,7 @@ const initializer = () => {
   result.innerText = "";
   winCount = 0;
   let count = gameForm.input.value;
+  if (count % 2 || count < 2 || count > 10) count = 4;
   let numberArray = createArray(count);
   console.log(numberArray);
   shuffleArray(numberArray);
