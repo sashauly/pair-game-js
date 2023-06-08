@@ -64,8 +64,6 @@ const movesCounter = () => {
   moves.innerHTML = `<span>Moves:</span>${movesCount}`;
 };
 
-// Этап 1. Создайте функцию, генерирующую массив парных чисел. Пример массива, который должна возвратить функция: [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8].count - количество пар.
-
 function createArray(count) {
   const numbersArray = [];
   for (let i = 1; i <= (count * count) / 2; i++) {
@@ -75,8 +73,6 @@ function createArray(count) {
   return numbersArray;
 }
 
-// Этап 2. Создайте функцию перемешивания массива.Функция принимает в аргументе исходный массив и возвращает перемешанный массив. arr - массив чисел
-
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -84,9 +80,7 @@ function shuffleArray(arr) {
   }
 }
 
-// Этап 3. Используйте две созданные функции для создания массива перемешанными номерами. На основе этого массива вы можете создать DOM-элементы карточек. У каждой карточки будет свой номер из массива произвольных чисел. Вы также можете создать для этого специальную функцию. count - количество пар.
-
-function startGame(cardValues, size = 4) {
+function startGame(cardValues, size) {
   let firstCard = false;
   let secondCard = false;
 
@@ -100,9 +94,33 @@ function startGame(cardValues, size = 4) {
      `;
   }
   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
+  let viewport_width = window.innerWidth;
 
   let cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
+    if (size == 10 || size == 8) {
+      if (viewport_width < 375) {
+        card.style.width = '0.8em';
+        card.style.height = '0.8em';
+      } else if (viewport_width < 900) {
+        card.style.width = '1.7em';
+        card.style.height = '1.7em';
+      } else if (viewport_width < 1400) {
+        card.style.width = '2.25em';
+        card.style.height = '2.25em';
+      } else if (viewport_width < 1600) {
+        card.style.width = '3.25em';
+        card.style.height = '3.25em';
+      }
+    } else if (size == 6) {
+      if (viewport_width < 1024) {
+        card.style.width = '2.75em';
+        card.style.height = '2.75em';
+      } else if (viewport_width < 1400) {
+        card.style.width = '3.25em';
+        card.style.height = '3.25em';
+      }
+    }
     card.addEventListener("click", () => {
       if (!card.classList.contains("matched")) {
         card.classList.add("flipped");
@@ -139,8 +157,6 @@ function startGame(cardValues, size = 4) {
   });
 }
 
-
-
 gameForm.form.addEventListener('submit', function (e) {
   e.preventDefault();
   movesCount = 0;
@@ -151,11 +167,10 @@ gameForm.form.addEventListener('submit', function (e) {
   gameForm.startButton.classList.add("hide");
   timeValue.innerHTML = `<span>Time: </span> 00:00`;
   interval = setInterval(timeGenerator, 1000);
-  moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
+  moves.innerHTML = `<span>Moves: </span> ${movesCount}`;
   initializer();
 });
 
-// Stop game
 stopButton.addEventListener(
   "click",
   (stopGame = () => {
@@ -166,7 +181,6 @@ stopButton.addEventListener(
   })
 );
 
-//Initialize values and func calls
 const initializer = () => {
   result.innerText = "";
   winCount = 0;

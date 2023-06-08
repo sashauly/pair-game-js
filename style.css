@@ -187,3 +187,29 @@ margin: 0;
 
   font-size: 1.8em;
 }
+
+@media(max-width:1600px){
+  .card-before,
+  .card-after {
+    font-size: 2.25em;
+  }
+}
+
+@media(max-width:1200px){
+  .card-before,
+  .card-after {
+    border: 2px solid #000000;
+
+    font-size: 1.75em;
+  }
+}
+
+@media(max-width:900px){
+  .game-container{
+    gap: 0.1em;
+  }
+  .card-before,
+  .card-after {
+    font-size: 1.25em;
+  }
+}
