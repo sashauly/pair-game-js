@@ -12,22 +12,29 @@ const result = document.getElementById('result');
 
 const gameContainer = document.querySelector('.game-container');
 
-let cards;
 let interval;
-let firstCard = false;
-let secondCard = false;
+
+let movesCount = 0,
+  winCount = 0;
+
+let seconds = 0,
+  minutes = 0;
 
 function createForm() {
+  let formDescr = document.createElement('p');
   let form = document.createElement('form');
   let input = document.createElement('input');
   let startButton = document.createElement('button');
 
+  formDescr.classList.add('form-descr');
+  formDescr.textContent = 'Enter the even number from 2 to 10 for rows and cols (4 by default)';
   form.classList.add('form');
   input.classList.add('input-number');
-  input.placeholder = 'Enter the number of cards vertically/horizontally';
+  input.placeholder = 'Enter the number: ';
   startButton.classList.add('btn-reset', 'btn');
   startButton.getAttribute('id', 'start');
   startButton.textContent = 'Start Game';
+  form.append(formDescr);
   form.append(input);
   form.append(startButton);
 
@@ -38,26 +45,22 @@ function createForm() {
   };
 }
 
-let movesCount = 0,
-  winCount = 0;
+let gameForm = createForm();
+controlBox.append(gameForm.form);
 
 const timeGenerator = () => {
-  let seconds = 0,
-    minutes = 0;
-  timer = setInterval(() => {
-    if (seconds >= 60) {
-      minutes += 1;
-      seconds = 0;
-    }
-    let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
-    let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
-    timeValue.innerHTML = `<span>Time: </span>${minutesValue}:${secondsValue}`;
-    seconds++;
-  }, 1000);
+  seconds++;
+  if (seconds >= 60) {
+    minutes++;
+    seconds = 0;
+  }
+  let secondsValue = seconds < 10 ? `0${seconds}` : seconds;
+  let minutesValue = minutes < 10 ? `0${minutes}` : minutes;
+  timeValue.innerHTML = `<span>Time: </span>${minutesValue}:${secondsValue}`;
 };
 
 const movesCounter = () => {
-  movesCount += 1;
+  movesCount++;
   moves.innerHTML = `<span>Moves:</span>${movesCount}`;
 };
 
@@ -84,6 +87,9 @@ function shuffleArray(arr) {
 // Этап 3. Используйте две созданные функции для создания массива перемешанными номерами. На основе этого массива вы можете создать DOM-элементы карточек. У каждой карточки будет свой номер из массива произвольных чисел. Вы также можете создать для этого специальную функцию. count - количество пар.
 
 function startGame(cardValues, size = 4) {
+  let firstCard = false;
+  let secondCard = false;
+
   gameContainer.innerHTML = "";
   for (let i = 0; i < size * size; i++) {
     gameContainer.innerHTML += `
@@ -95,7 +101,7 @@ function startGame(cardValues, size = 4) {
   }
   gameContainer.style.gridTemplateColumns = `repeat(${size},auto)`;
 
-  cards = document.querySelectorAll(".card-container");
+  let cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       if (!card.classList.contains("matched")) {
@@ -111,10 +117,11 @@ function startGame(cardValues, size = 4) {
             firstCard.classList.add("matched");
             secondCard.classList.add("matched");
             firstCard = false;
-            winCount += 1;
+            winCount++;
             if (winCount == Math.floor(cardValues.length / 2)) {
-              result.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${movesCount}</h4>`;
+              result.innerHTML = `<h2>You Won!</h2>
+            <h4>Moves: ${movesCount}</h4>
+            <p>Try again?</p>`;
               stopGame();
             }
           } else {
@@ -132,19 +139,18 @@ function startGame(cardValues, size = 4) {
   });
 }
 
-let gameForm = createForm();
-controlBox.append(gameForm.form);
+
 
 gameForm.form.addEventListener('submit', function (e) {
   e.preventDefault();
-  if (!gameForm.input.value) {
-    return;
-  }
   movesCount = 0;
+  seconds = 0;
+  minutes = 0;
   controlBox.classList.add("hide");
   gameBox.classList.remove("hide");
   gameForm.startButton.classList.add("hide");
-  timeGenerator();
+  timeValue.innerHTML = `<span>Time: </span> 00:00`;
+  interval = setInterval(timeGenerator, 1000);
   moves.innerHTML = `<span>Moves:</span> ${movesCount}`;
   initializer();
 });
@@ -156,7 +162,7 @@ stopButton.addEventListener(
     controlBox.classList.remove("hide");
     gameBox.classList.add("hide");
     gameForm.startButton.classList.remove("hide");
-    clearInterval(timer);
+    clearInterval(interval);
   })
 );
 
@@ -165,7 +171,7 @@ const initializer = () => {
   result.innerText = "";
   winCount = 0;
   let count = gameForm.input.value;
-  if (count % 2 || count < 2 || count > 10) count = 4;
+  if (count == '' || count % 2 || count < 2 || count > 10) count = 4;
   let numberArray = createArray(count);
   console.log(numberArray);
   shuffleArray(numberArray);

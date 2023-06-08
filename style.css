@@ -40,6 +40,8 @@ body {
   border-radius: 0.3em;
   outline: none;
   background-color: #000;
+
+  font-size: 1.1em;
 }
 
 .hide{
@@ -54,17 +56,23 @@ body {
 }
 .game-title{
   margin: 0;
+  margin-bottom: 0.6em;
 
   text-align: center;
 }
 .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 
-  width: 100%;
-  padding: 2.5em 3em;
+  padding: 1em;
+
+  transform: translate(-50%, -50%);
 
   border-radius: 0.6em;
   background-color: #fff;
@@ -75,6 +83,8 @@ body {
 }
 
 .game-box{
+  display: flex;
+  flex-direction: column;
 }
 .stats-container {
   margin-bottom: 1.2em;
@@ -85,9 +95,22 @@ body {
   font-weight: 600;
 }
 
-.form{
+.form {
   display: flex;
   flex-direction: column;
+}
+
+.form-descr{
+  margin: 0;
+  margin-bottom: 0.6em;
+}
+
+.input-number {
+  margin-bottom: 1.2em;
+  padding: 1em 2.5em;
+
+  border: 1px solid #000;
+  border-radius: 0.6em;
 }
 
 .game-container {
@@ -98,8 +121,9 @@ body {
   width: 100%;
   max-width: 50%;
   height: 100%;
+  margin-bottom: 1.2em;
 
-  gap: 0.6em;
+  gap: 0.3em;
 }
 
 .card-container {
@@ -107,8 +131,8 @@ body {
 
   display: flex;
 
-  width: 12em;
-  height: 12em;
+  width: 4.25em;
+  height: 4.25em;
 
   cursor: pointer;
 }
@@ -149,24 +173,17 @@ body {
 .card-container.flipped .card-after {
   transform: rotateY(0deg);
 }
-#stop {
-  display: block;
 
-  margin: 1.1em auto 0 auto;
-
-  color: #ffffff;
-  background-color: #000000;
-
-  font-size: 1.1em;
-}
 #result {
   text-align: center;
 }
 #result h2 {
+  margin: 0;
+
   font-size: 2.5em;
 }
 #result h4 {
-  margin: 0.6em 0 1em 0;
+margin: 0;
 
   font-size: 1.8em;
 }
