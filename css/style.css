@@ -45,7 +45,7 @@ body {
 }
 
 .hide{
-  display: none !important;
+  display: none;
 }
 
 .container {
@@ -157,7 +157,7 @@ body {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
-.card-before {
+.card-before { 
   color: #fff;
   background-color: #000;
 }

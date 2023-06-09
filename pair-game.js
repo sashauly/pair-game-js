@@ -1,5 +1,3 @@
-
-
 const controlBox = document.querySelector('.controls-box');
 const gameBox = document.querySelector('.game-box');
 
