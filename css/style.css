@@ -1,5 +1,7 @@
 :root{
-
+  --default-color:#f6f7eb;
+  --secondary-color:#393e41;
+  --accent-color:#e94f37;
 }
 
 html {
@@ -15,7 +17,8 @@ html {
 body {
   min-width: 320px;
 
-  background-color: #000;
+  color:var(--secondary-color);
+  background-color: var(--secondary-color);
 
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
@@ -31,15 +34,18 @@ body {
 }
 
 .btn {
+  display: block;
+
+  margin: 0 auto 0.6em;
   padding: 1em 1.5em;
 
   text-align: center;
 
-  color: #fff;
+  color: var(--default-color);
   border: none;
   border-radius: 0.3em;
   outline: none;
-  background-color: #000;
+  background-color: var(--accent-color);
 
   font-size: 1.1em;
 }
@@ -75,15 +81,10 @@ body {
   transform: translate(-50%, -50%);
 
   border-radius: 0.6em;
-  background-color: #fff;
+  background-color: var(--default-color);
   box-shadow: 0 0.9em 2.8em rgba(86,66,0,0.2); 
 }
 
-.controls-box{
-}
-
-.game-box{
-}
 .stats-container {
   margin-bottom: 1.2em;
 
@@ -91,6 +92,11 @@ body {
 }
 .stats-container span {
   font-weight: 600;
+}
+
+#moves-count,
+#time-count{
+  margin: 0;
 }
 
 .form {
@@ -107,7 +113,7 @@ body {
   margin-bottom: 1.2em;
   padding: 1em 2.5em;
 
-  border: 1px solid #000;
+  border: 1px solid var(--accent-color);
   border-radius: 0.6em;
 }
 
@@ -148,7 +154,7 @@ body {
 
   transition: transform 0.5s ease-out;
 
-  border: 4px solid #000000;
+  border: 4px solid var(--accent-color);
   border-radius: 5px;
 
   font-size: 2.8em;
@@ -158,13 +164,13 @@ body {
           backface-visibility: hidden;
 }
 .card-before { 
-  color: #fff;
-  background-color: #000;
+  color: var(--default-color);
+  background-color: var(--secondary-color);
 }
 .card-after {
   transform: rotateY(180deg);
 
-  background-color: #ffffff;
+  background-color: var(--default-color);
 }
 .card-container.flipped .card-before {
   transform: rotateY(180deg);
@@ -197,7 +203,7 @@ margin: 0;
 @media(max-width:1200px){
   .card-before,
   .card-after {
-    border: 2px solid #000000;
+    border: 2px solid var(--accent-color);
 
     font-size: 1.75em;
   }
