@@ -59,7 +59,7 @@ const timeGenerator = () => {
 
 const movesCounter = () => {
   movesCount++;
-  moves.innerHTML = `<span>Moves:</span>${movesCount}`;
+  moves.innerHTML = `<span>Moves: </span>${movesCount}`;
 };
 
 function createArray(count) {
