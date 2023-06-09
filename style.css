@@ -9,7 +9,7 @@ html {
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: inherit; 
 }
 
 body {
@@ -76,15 +76,13 @@ body {
 
   border-radius: 0.6em;
   background-color: #fff;
-  box-shadow: 0 0.9em 2.8em rgba(86,66,0,0.2);
+  box-shadow: 0 0.9em 2.8em rgba(86,66,0,0.2); 
 }
 
 .controls-box{
 }
 
 .game-box{
-  display: flex;
-  flex-direction: column;
 }
 .stats-container {
   margin-bottom: 1.2em;
@@ -156,7 +154,8 @@ body {
   font-size: 2.8em;
   font-weight: 600;
 
-  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 .card-before {
   color: #fff;
