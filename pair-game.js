@@ -165,7 +165,7 @@ function checkViewport(card, size, viewport_width) {
       setTimeout(() => {
         card.classList.remove("flipped");
         card.addEventListener("click", () => {
-          if (!card.classList.contains("matched")) {
+          if (!card.classList.contains("matched") && !card.classList.contains("flipped")) {
             card.classList.add("flipped");
             if (!firstCard) {
               firstCard = card;
@@ -229,8 +229,8 @@ function checkViewport(card, size, viewport_width) {
   const initializer = () => {
     result.innerText = "";
     winCount = 0;
-    let count = controlBox.gameForm.input.value;
-    if (count == '' || count % 2 || count < 2 || count > 10) count = 4;
+    let count = Number.parseInt(controlBox.gameForm.input.value);
+    if (!Number.isInteger(count) || count == '' || count % 2 || count < 2 || count > 10) count = 4;
     const numberArray = createArray(count);
     shuffleArray(numberArray);
     startGame(numberArray, count);
