@@ -1,4 +1,4 @@
-# tenzies-react
+# pair-game-js
 ![Screenshot](./misc/screenshot.png)
 > Simple Pair Game in vanilla Javascript.
 > Live demo [_here_](https://sashauly.github.io/pair-game-js//).
