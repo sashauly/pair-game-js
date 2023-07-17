@@ -1,7 +1,7 @@
 # tenzies-react
 ![Screenshot](./misc/screenshot.png)
 > Simple Pair Game in vanilla Javascript.
-> Live demo [_here_](https://sashauly.github.io/pair-game-js.github.io/).
+> Live demo [_here_](https://sashauly.github.io/pair-game-js//).
 
 ## Table of Contents
 - [tenzies-react](#tenzies-react)
@@ -32,7 +32,7 @@ Rules are simple:
 ### Good luck!
 
 ## Setup
-Just open [the live version](https://sashauly.github.io/pair-game-js.github.io/). For now this project served for presentation purposes
+Just open [the live version](https://sashauly.github.io/pair-game-js//). For now this project served for presentation purposes
 
 ## Project status
 
