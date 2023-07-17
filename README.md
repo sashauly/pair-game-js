@@ -4,7 +4,7 @@
 > Live demo [_here_](https://sashauly.github.io/pair-game-js//).
 
 ## Table of Contents
-- [tenzies-react](#tenzies-react)
+- [pair-game-js](#pair-game-js)
   - [Table of Contents](#table-of-contents)
   - [General Information](#general-information)
   - [Technologies Used](#technologies-used)
